@@ -1,0 +1,334 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;1,100;1,300;1,400&display=swap");
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+:root {
+  --primary-color: #0bb2d4;
+  --secondary-color: #526069;
+}
+html {
+  font-size: 62.5%;
+}
+body {
+  font-family: "Roboto", sans-serif;
+  background-color: #e7eaed;
+  text-decoration: none;
+  position: relative;
+  /* overflow-x: hidden; */
+}
+/* /////////////////NAVIGATION/////////// */
+.nav-container {
+  position: fixed;
+  z-index: 200;
+  width: 100vw;
+  margin-top: -12rem;
+}
+.nav-container .nav {
+  background-color: #fff;
+  box-shadow: 0.5rem 0.5rem 0.5rem rgba(0, 0, 0, 0.1);
+  overflow: auto;
+  margin-top: 1rem;
+  height: 8rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.nav .nav-link {
+  margin-left: 2rem;
+  margin-right: 2rem;
+  font-size: 2rem;
+}
+.nav .profile-image {
+  height: 6rem;
+  width: 6rem;
+  border: 0.2rem solid;
+  border-radius: 50%;
+  background: url("./images/fitness-profile.jpg") no-repeat center center/cover;
+}
+.nav .nav-link.dropdown {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+}
+.nav .nav-link.dropdown i {
+  font-size: 2rem;
+  padding: 1rem;
+  cursor: pointer;
+}
+.nav-link.dropdown .dropdown-content {
+  display: none;
+  margin-top: 10rem;
+  position: absolute;
+  z-index: 10;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  background-color: #fff;
+  box-shadow: 0 0.5rem 0.5rem 0.5rem rgba(0, 0, 0, 0.1);
+}
+.nav-link.dropdown .dropdown-content a {
+  font-size: 2rem;
+  text-decoration: none;
+  padding: 1rem;
+  text-decoration: none;
+}
+
+/* ////////////////CARDS////////////// */
+.card-container {
+  margin-top: 12rem;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.card-container .card {
+  height: 5rem;
+  margin: 1rem;
+  width: 15rem;
+  font-size: 1.5rem;
+  border-radius: 0.5rem;
+  color: #fff;
+  transition: all 0.5s ease;
+  box-shadow: 0.5rem 0.5rem 0.5rem rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.card-container .card:hover {
+  transition: all 0.5s ease;
+  transform: scale(1.2);
+  box-shadow: 1rem 1rem 1rem rgba(0, 0, 0, 0.1);
+}
+.card-container .card span {
+  padding: 0.3rem;
+  font-size: 2rem;
+}
+.card-container .card i {
+  border: 0.1rem solid;
+  padding: 0.3rem;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.card-container .card i:hover {
+  background-color: #fff;
+  color: black;
+  transition: all 0.3s ease;
+  border: 0.1rem solid #fff;
+}
+
+.card-container .card:nth-child(1) {
+  background-color: #526069;
+}
+.card-container .card:nth-child(2) {
+  background-color: #3e8ef7;
+}
+.card-container .card:nth-child(3) {
+  background-color: #0bb2d4;
+}
+.card-container .card:nth-child(4) {
+  background-color: #17b3a3;
+}
+.card-container .card:nth-child(5) {
+  background-color: #ff4c52;
+}
+.card-container .card:nth-child(6) {
+  background-color: #9463f7;
+}
+
+.chart-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.chart-container .chart {
+  margin: 2rem;
+}
+
+/* ADD WORKOUT */
+.add-container {
+  position: fixed;
+  right: 2rem;
+  bottom: 2rem;
+  margin: 2rem;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: transform 0.5s ease;
+}
+.add-container.rotate {
+  transform: rotate(405deg);
+}
+.add-container i {
+  font-size: 2rem;
+  padding: 2rem;
+  border-radius: 50%;
+  border: 0.1rem solid;
+  transition: all 0.5s ease;
+}
+.add-container i:hover {
+  background-color: #0bb2d4;
+  color: #fff;
+  border: 0.1rem solid #fff;
+}
+
+/* ADD WORKOUT MODEL */
+.model-container {
+  position: fixed;
+  right: 0;
+  bottom: 15rem;
+  padding-right: 1rem;
+  display: none;
+}
+.model-container.show-workout {
+  display: block;
+}
+.model-container .model {
+  background-color: rgba(0, 0, 0, 0.1);
+  padding: 3rem;
+  border-radius: 0.5rem;
+}
+.model-container .model .form-control {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+.model-container .model .form-control input {
+  padding: 1rem;
+  outline: none;
+  border-radius: 0.5rem;
+  border: none;
+}
+.model-container .model .form-control select {
+  width: 100%;
+  padding: 0.5rem;
+  outline: none;
+  border-radius: 0.5rem;
+  border: none;
+  padding: 1rem;
+}
+.model-container .model .form-button-control {
+  display: flex;
+  align-content: center;
+  justify-content: space-between;
+}
+.model-container .model .form-button-control button {
+  width: 49%;
+  border: none;
+  outline: none;
+  padding: 1rem;
+  font-size: 1.5rem;
+  border-radius: 0.5rem;
+  background-color: #02c9f2;
+  color: #fff;
+}
+.model-container .model .form-button-control button:hover {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+/* EXERCISE MODEL */
+.exercise-model-container {
+  position: fixed;
+  left: 1%;
+  bottom: 15rem;
+  padding: 1rem;
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 1rem;
+  display: none;
+}
+.exercise-model-container.show {
+  display: inline-block;
+}
+.exercise-model-container .exercise-model .exercise-model-header i {
+  float: right;
+  padding: 1rem;
+  font-size: 2rem;
+  color: var(--secondary-color);
+  cursor: pointer;
+}
+.exercise-model .form-control input {
+  padding: 1rem;
+  border-radius: 0.5rem;
+  border: none;
+  outline: none;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+.exercise-model .form-control select {
+  width: 100%;
+  padding: 1rem;
+  outline: none;
+  margin-bottom: 1rem;
+  border: none;
+  border-radius: 0.5rem;
+}
+.exercise-model .form-control-button button {
+  width: 100%;
+  padding: 1rem;
+  font-size: 1.5rem;
+  border-radius: 0.5rem;
+  background-color: white;
+  outline: none;
+  border: none;
+  background-color: #02c9f2;
+  color: #fff;
+}
+.exercise-model .form-control-button button:hover {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+/* NOTIFICATION PART */
+
+.notification-wrapper{
+  position: fixed;
+  top: 30%;
+  left: 1rem;
+  border: 0.1rem solid #526069;
+  /* border-left: 1rem solid red; */
+  border-radius: 0.5rem;
+  background-color: #fff;
+  transform: translateX(-40rem);
+  transition: 1s transform ease;
+}
+.notification-wrapper .notification{
+  display: flex;
+  /* justify-content: center; */
+}
+.notification-wrapper .notification .notification-message{
+  margin-right: 1rem;
+  padding: 2rem;
+  align-self: center;
+  
+}
+.notification-wrapper .notification .notification-message p:first-child{
+  font-size: 3rem;
+  font-weight: 500;
+}
+.notification-wrapper .notification .notification-message p:last-child{
+  font-size: 1.5rem;
+  color: #526069;
+}
+.notification-wrapper .notification .notification-close i{
+  align-items: flex-end;
+  font-size: 2rem;
+  padding: 1rem;
+  cursor: pointer;
+}
+
+/* RESPONSIVE DESIGN */
+
+@media (max-width: 500px) {
+    html{
+        font-size: 42.5%;
+    }
+}
+@media (max-width: 700px) {
+    html{
+        font-size: 48.5%;
+    }
+}

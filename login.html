@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;1,100;1,300;1,400&display=swap");
+
+        * {
+            box-sizing: border-box;
+            padding: 0;
+            margin: 0;
+        }
+
+        body {
+            font-family: "Roboto", sans-serif;
+            background: linear-gradient(rgba(46, 48, 71, 0.4), rgba(46, 48, 71, 0.4)),
+                url("./images/fitness-7.jpg") no-repeat center center/cover;
+            height: 100vh;
+            width: 100vw;
+        }
+
+        .login-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100vh;
+            width: 100vw;
+        }
+
+        .login-container .login {
+            /* background-color: rgba(46, 48, 71, 0.5); */
+            color: #3bba9c;
+            padding: 50px;
+            border-radius: 5px;
+            width: 600px;
+            max-width: 100%;
+            /* width: 600px; */
+        }
+
+        .login h2 {
+            margin-bottom: 10px;
+        }
+
+        .login #error-message {
+            color: #A94442;
+            background-color: #F2DEDE;
+            border: 0.2rem solid #EBCCD1;
+            padding: 0.5rem;
+            margin-bottom: 1rem;
+            border-radius: 0.5rem;
+            display: none;
+        }
+
+        .login .form-control {
+            margin-bottom: 10px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .login .form-control input[type="text"],
+        input[type="password"] {
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
+            border: none;
+            color: #fff;
+            outline: none;
+        }
+
+        .login .form-control input[type="text"]::placeholder,
+        input[type="password"]::placeholder {
+            color: #fff;
+            font-size: 15px;
+
+        }
+
+        .form-button-control button {
+            padding: 10px 30px;
+            font-size: 18px;
+            border-radius: 5px;
+            outline: none;
+            border: 2px solid #3bba9c;
+            background-color: transparent;
+            color: #3bba9c;
+            cursor: pointer;
+        }
+
+        .form-button-control button:hover {
+            background-color: #3bba9c;
+            color: #fff;
+        }
+
+        .login p {
+            color: #fff;
+            margin-top: 10px;
+        }
+
+        .login a {
+            color: #3bba9c;
+        }
+
+        @media (max-width: 500px) {
+
+            .login .form-control input[type="text"],
+            input[type="password"] {
+                padding: 10px;
+            }
+
+            .form-button-control button {
+                padding: 5px 15px;
+                font-size: 15px;
+            }
+        }
+    </style>
+    <title>Overload</title>
+</head>
+
+<body>
+    <div class="login-container">
+        <div class="login">
+            <h2>Welcome to Overload</h2>
+            <p id="error-message"></p>
+            <form action="#" id="form">
+
+                <div class="form-control">
+                    <input type="text" id="username" name="username" placeholder="Enter Username" required>
+                </div>
+
+                <div class="form-control">
+                    <input type="password" id="password" name="password" placeholder="Enter password" required>
+                </div>
+                <div class="form-button-control">
+                    <button type="submit">Login</button>
+                    <button type="reset">Reset</button>
+                </div>
+            </form>
+            <P>You dont have an account click <a href="register.html">here</a></P>
+        </div>
+    </div>
+    <script>
+        window.addEventListener("load", (e) => {
+            window.localStorage.clear();
+        })
+
+        const form = document.getElementById("form");
+        const error_msg = document.getElementById("error-message");
+
+        const myStorage = window.localStorage;
+
+        form.addEventListener("submit", (e) => {
+            e.preventDefault();
+            const formData = new FormData(form);
+            const formDataSerialised = Object.fromEntries(formData);
+
+
+            fetch("https://overload-test.herokuapp.com/api/login", {
+                method: "POST",
+                body: JSON.stringify(formDataSerialised),
+                headers: {
+                    "Content-Type": "application/json",
+                    Accept: "*/*",
+                    Authorization: "Jwt-token",
+                }
+            }).then(async (response) => {
+                if (response.ok) {
+
+                    const token = "Bearer " + response.headers.get('Jwt-token');
+                    myStorage.setItem("token", token)
+
+                    // console.log(token);
+                    // window.location.href = "index.html";
+
+                    return response.json();
+
+                } else if ((response.status >= 400 && response.status < 600)) {
+                    response.json().then(info => {
+                        error_msg.style.display = "block";
+                        error_msg.innerText = info.message.toLowerCase();
+                    });
+                }
+
+            }).then(data => {
+                const userId = data.id
+                myStorage.setItem("userId", userId)
+                // console.log(data);
+                window.location.href = "index.html";
+
+
+            }).catch(error => {
+                error_msg.style.display = "block";
+                error_msg.innerText = "Unable to connect to the server";
+                console.error(error);
+
+            });
+        })
+    </script>
+</body>
+
+</html>

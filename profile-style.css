@@ -1,0 +1,326 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;1,100;1,300;1,400&display=swap");
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+:root {
+  --primary-color: #0bb2d4;
+  --secondary-color: #526069;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  background-color: #e7eaed;
+  text-decoration: none;
+}
+
+.nav {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 8rem;
+  margin-top: 1rem;
+  background-color: #fff;
+  box-shadow: 0.5rem 0.5rem 0.5rem rgba(0, 0, 0, 0.1);
+}
+
+.nav .nav-link span {
+  font-size: 2rem;
+}
+
+.nav .nav-link i {
+  font-size: 2rem;
+}
+
+.profile-container {
+  /* border: 1rem solid green; */
+  margin-top: 2rem;
+  /* width: 50vw; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.profile-container .personal-info {
+    padding: 1rem;
+    width: 50vw;
+    background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.personal-info .personal-img {
+  height: 15rem;
+  width: 15rem;
+  border: 0.2rem solid #c3c3c3;
+  border-radius: 50%;
+  background: url("./images/fitness-profile.jpg") no-repeat center center/cover;
+  margin-right: 2rem;
+}
+
+.personal-info .personal-label {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.personal-info .personal-label p {
+  font-size: 1.5rem;
+}
+
+.personal-info .personal-label button {
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  border: 0.1rem solid #c3c3c3;
+  background-color: #fff;
+  color: #c3c3c3;
+}
+
+.personal-info .personal-label button:hover {
+  transition: all 0.5s ease;
+  border: 0.1rem solid #5372fbc7;
+  color: #5372fbc7;
+}
+
+/* TABLE */
+
+
+.profile-container .table-info .table {
+  border-collapse: collapse;
+  padding: 1rem;
+  font-size: 1.5rem;
+  min-width: 50vw;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.table-info .table thead tr {
+  background-color: #009879;
+  color: #ffffff;
+  text-align: left;
+}
+.table-info .table th,
+.table-info .table td {
+  padding: 12px 15px;
+}
+.table-info .table tbody tr {
+  border-bottom: 1px solid #dddddd;
+}
+.table-info .table tbody tr td button {
+  padding: 0.5rem 1rem;
+  margin-right: 0.5rem;
+}
+
+.table-info .table tr:nth-of-type(even) {
+  background-color: #f3f3f3;
+}
+
+.table-info .table tr:last-of-type {
+  border-bottom: 2px solid #009879;
+}
+.table-info .table tbody tr.active-row {
+  font-weight: bold;
+  color: #009879;
+}
+
+/* MODEL */
+.profile-model {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  flex-direction: column;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(46, 48, 71, 0.9);
+  opacity: 0;
+  pointer-events: none;
+}
+.profile-model.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+.profile-model .profile-header {
+  padding: 1rem;
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+}
+.profile-model .profile-header span {
+  font-size: 3rem;
+  color: #009879;
+}
+.profile-model .profile-header h2 {
+  align-self: center;
+  color: #009879;
+  font-size: 2rem;
+}
+
+.profile-model form {
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 30%;
+  color: #009879;
+  /* max-width: 100%; */
+}
+
+.profile-model form .form-control {
+  width: 100%;
+  margin: 1rem;
+  display: flex;
+  flex-direction: column;
+  /* background-color: red; */
+}
+
+.profile-model form .form-control label {
+  font-size: 1.5rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.profile-model form .form-control input {
+  font-size: 1.5rem;
+  padding: 1rem;
+  outline: none;
+  border: 0.1rem solid;
+  border-radius: 0.5rem;
+}
+
+.profile-model form .form-btn {
+  width: 100%;
+  margin: 1rem;
+}
+
+.profile-model form .form-btn button {
+  padding: 1rem 3rem 1rem 3rem;
+  font-size: 1.5rem;
+  background-color: #e7eaed;
+  border: 0.1rem solid;
+  border-radius: 0.5rem;
+}
+.exercise-model {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  flex-direction: column;
+  top: 0;
+  left: 0;
+  min-height: 100vh;
+  min-width: 100vw;
+  background-color: rgba(46, 48, 71, 0.9);
+  opacity: 0;
+  pointer-events: none;
+}
+.exercise-model.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+.exercise-model .model {
+  width: 50%;
+  border: 0.1rem solid #009879;
+  padding: 2rem;
+}
+
+.exercise-model .profile-header span {
+  font-size: 2rem;
+  color: #009879;
+}
+.exercise-model .profile-header h2 {
+  font-size: 2rem;
+  text-align: center;
+  color: #009879;
+}
+.exercise-model .exercise-form .form-control {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+.exercise-model .exercise-form .form-control label {
+  font-size: 2rem;
+  color: #fff;
+  margin-bottom: 0.5rem;
+}
+.exercise-model .exercise-form .form-control input {
+  padding: 0.5rem;
+  font-size: 1.5rem;
+  color: #009879;
+}
+.exercise-model .exercise-form .form-control select {
+  padding: 0.5rem;
+  font-size: 1.5rem;
+  color: #009879;
+}
+.exercise-model .exercise-form .form-btn button {
+  margin-top: 1rem;
+  margin-right: 1rem;
+  padding: 1rem 2rem;
+  font-size: 1.5rem;
+  color: #009879;
+  background-color: transparent;
+  border: 0.1rem solid #009879;
+  border-radius: 0.5rem;
+}
+/* TABLE STYLING */
+.dataTables_wrapper {
+  margin-top: 2rem;
+  padding: 1rem;
+}
+.dataTables_wrapper .dataTables_length {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+}
+.dataTables_wrapper .table_length label {
+  font-size: 2rem;
+  padding: 1rem;
+}
+.dataTables_wrapper .dataTables_filter label {
+  font-size: 2rem;
+}
+.dataTables_wrapper .dataTables_info {
+  font-size: 1.5rem;
+}
+.dataTables_wrapper .dataTables_paginate {
+  font-size: 1.5rem;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button.current {
+  background-color: #009879;
+  color: #fff !important;
+}
+/* RESPONSIVE DESIGN */
+
+@media (max-width: 500px) {
+  html {
+    font-size: 42.5%;
+  }
+}
+@media (max-width: 700px) {
+  html {
+    font-size: 48.5%;
+  }
+  .profile-model .profile-header,
+  .profile-model form {
+    width: 100%;
+  }
+  .profile-container .table-info,
+  .profile-container .table-info .table,
+  .profile-container .profile {
+    width: 100%;
+  }
+}

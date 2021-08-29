@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+        integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="style.css">
+
+    <!-- HIGHCHART LIKED FILES -->
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/series-label.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="nav-container">
+        <div class="nav">
+            <div class="nav-link logo">Dashboard</div>
+            <div class="nav-link profile-name" id="profile-name"></div>
+            <div class="nav-link">
+                <a href="profile.html">
+                    <div class="profile-image" id="profile-image"></div>
+                </a>
+            </div>
+            <div class="nav-link dropdown">
+                <i class="fas fa-chevron-down display-dropdown"></i>
+                <div class="dropdown-content">
+                    <a href="#" id="logout">logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card-container">
+        <div class="card">
+            <span>Chest</span>
+            <i title="Add chest exercise" class="fas fa-plus exercise-add"></i>
+        </div>
+        <div class="card">
+            <span>Back</span>
+            <i title="Add back exercise" class="fas fa-plus exercise-add"></i>
+        </div>
+        <div class="card">
+            <span>Shoulder</span>
+            <i title="Add shoulder exercise" class="fas fa-plus exercise-add"></i>
+        </div>
+        <div class="card">
+            <span>Arm</span>
+            <i title="Add arm exercise" class="fas fa-plus exercise-add"></i>
+        </div>
+        <div class="card">
+            <span>Leg</span>
+            <i title="Add leg exercise" class="fas fa-plus exercise-add"></i>
+        </div>
+        <!-- <div class="card">
+            <span>Cardio</span>
+            <i title="Add cardio exercise" class="fas fa-plus exercise-add"></i>
+        </div> -->
+    </div>
+
+    <div class="chart-container">
+        <div class="chart chart-chest" id="chest"></div>
+        <div class="chart chart-shoulder" id="shoulder"></div>
+        <div class="chart chart-back" id="back"></div>
+        <div class="chart chart-arm" id="arm"></div>
+        <div class="chart chart-leg" id="leg"></div>
+        <div class="chart chart-cardio" id="cardio"></div>
+    </div>
+    <div class="add-container" id="close">
+        <i class="fas fa-plus"></i>
+    </div>
+    <div class="model-container" id="model">
+        <div class="model">
+
+            <h2>Add todays workout</h2>
+            <form id="workoutForm">
+                <div class="form-control">
+                    <select name="exerciseName" id="exerciseName" required> </select>
+                </div>
+                <div class="form-control">
+                    <input type="number" name="rep" id="rep" min="1" placeholder="Enter your total reps" required>
+                </div>
+                <div class="form-control">
+                    <input type="number" name="weight" id="weight" min="1" placeholder="Enter your total weight" required>
+                </div>
+                <div class="form-button-control">
+                    <button type="submit">Add</button>              
+                    <button type="reset">Reset</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="exercise-model-container" id="exercise-model">
+        <div class="exercise-model">
+            <div class="exercise-model-header">
+                <i title="Add cardio exercise" class="fas fa-times" id="close-exercise"></i>
+            </div>
+            <form action="#" id="exercise-form">
+
+                <div class="form-control">
+                    <input type="text" id="exerciseName" name="exerciseName" placeholder="Enter exerise name" required>
+                </div>
+                <div class="form-control">
+                    <select name="part" id="part" required>
+                        <option value="" disabled selected>Select body part</option>
+                        <option value="CHEST">Chest</option>
+                        <option value="BACK">Back</option>
+                        <option value="SHOULDER">Shoulder</option>
+                        <option value="ARMS">Arm</option>
+                        <option value="LEGS">Leg</option>
+                    </select>
+                </div>
+                <div class="form-control-button">
+                    <button type="submit">Add Exercise</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="notification-wrapper" id="notification-wrapper">
+        <div class="notification">
+            <div class="notification-message">
+                <p id="notification-status"></p>
+                <p id="notification-message"></p>
+            </div>
+            <div class="notification-close" id="notification-close"><i class="fas fa-times"></i></div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>

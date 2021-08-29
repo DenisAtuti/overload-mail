@@ -1,0 +1,235 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;1,100;1,300;1,400&display=swap");
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+body {
+  font-family: "Roboto", sans-serif;
+  background: #333;
+  color: #fff;
+  line-height: 1.6;
+}
+.slider {
+  position: relative;
+  overflow: hidden;
+  height: 100vh;
+  width: 100vw;
+}
+.slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transform: opacity 0.4s ease-in-out;
+}
+.slide.current {
+  opacity: 1;
+}
+
+.slide .content {
+  position: absolute;
+  bottom: 30%;
+  left: -600px;
+  width: 600px;
+  /* background-color: rgba(255, 255, 255, 0.8); */
+  color: #fff;
+  padding: 35px;
+}
+.slide .content h1 {
+  margin-bottom: 10px;
+  font-size: 90px;
+  font-weight: 900;
+  color: #3bba9c;
+}
+.slide .content p {
+  font-size: 20px;
+}
+
+.slide.current .content {
+  opacity: 1;
+  transform: translateX(800px);
+  transition: all 0.7s ease-in-out 0.3s;
+}
+.buttons button#next {
+  position: absolute;
+  top: 50%;
+  right: 15px;
+}
+.buttons button#prev {
+  position: absolute;
+  top: 50%;
+  left: 15px;
+}
+.buttons button {
+  border: 2px solid #fff;
+  background-color: transparent;
+  color: #fff;
+  cursor: pointer;
+  padding: 13px 15px;
+  border-radius: 50%;
+  outline: none;
+}
+.buttons button:hover {
+  background-color: #fff;
+  color: #333;
+}
+.join {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 5px 15px;
+  font-size: 30px;
+  margin: 50px;
+  border-radius: 5px;
+  outline: 0;
+  border: 2px solid #3bba9c;
+  color: #3bba9c;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+/* background images */
+.slide:first-child {
+  background: linear-gradient(rgba(46, 48, 71, 0.4), rgba(46, 48, 71, 0.4)),
+    url("./images/fitness-1.jpg") no-repeat center center/cover;
+}
+.slide:nth-child(2) {
+  background: linear-gradient(rgba(46, 48, 71, 0.4), rgba(46, 48, 71, 0.4)),
+    url("./images/fitness-2.jpg") no-repeat center center/cover;
+}
+.slide:nth-child(3) {
+  background: linear-gradient(rgba(46, 48, 71, 0.4), rgba(46, 48, 71, 0.4)),
+    url("./images/fitness-3.jpg") no-repeat center center/cover;
+}
+.slide:nth-child(4) {
+  background: linear-gradient(rgba(46, 48, 71, 0.4), rgba(46, 48, 71, 0.4)),
+    url("./images/fitness-4.jpg") no-repeat center center/cover;
+}
+.slide:nth-child(5) {
+  background: linear-gradient(rgba(46, 48, 71, 0.4), rgba(46, 48, 71, 0.4)),
+    url("./images/fitness-5.jpg") no-repeat center center/cover;
+}
+.slide:nth-child(6) {
+  background: linear-gradient(rgba(46, 48, 71, 0.4), rgba(46, 48, 71, 0.4)),
+    url("./images/fitness-6.jpg") no-repeat center center/cover;
+}
+
+/* MODEL STYLING */
+
+.model-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  opacity: 0;
+  pointer-events: none;
+}
+.model-container.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+.model-container .model {
+  background-color: rgba(46, 48, 71, 0.9);
+  color: #3bba9c;
+  padding: 0 20px 20px 20px;
+  border-radius: 5px;
+  width: 500px;
+  max-width: 100%;
+}
+.model span {
+  float: right;
+  font-size: 30px;
+  cursor: pointer;
+}
+.model h2 {
+  margin-left: auto;
+  margin-right: auto;
+  width: 100px;
+  margin-bottom: 10px;
+  margin-top: 40px;
+}
+.model p{
+  color: #A94442;
+  background-color: #F2DEDE;
+  border: 0.2rem solid #EBCCD1;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  border-radius: 0.5rem;
+  display: none;
+}
+
+.model .form-control {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+
+.model .form-control input[type="text"],
+input[type="email"],
+input[type="password"] {
+  padding: 10px;
+  margin-top: 5px;
+  outline: none;
+  background-color: transparent;
+  border: 1px solid #fff;
+  color: #fff;
+  font-size: 18px;
+  border-radius: 5px;
+}
+
+.form-button-control button {
+  padding: 5px 20px;
+  font-size: 18px;
+  border-radius: 5px;
+  outline: none;
+  border: 2px solid #3bba9c;
+  background-color: transparent;
+  color: #3bba9c;
+  cursor: pointer;
+}
+.form-button-control button:hover {
+  background-color: #3bba9c;
+  color: #fff;
+}
+
+@media (max-width: 500px) {
+  .slide .content {
+    bottom: -300px;
+    left: 0;
+    width: 100%;
+  }
+  .slide.current .content {
+    transform: translateY(-300px);
+  }
+  .slide.current h1 {
+    font-size: 40px;
+  }
+  .slide.current p {
+    font-size: 15px;
+  }
+  .join {
+    font-size: 20px;
+  }
+  .model span {
+    font-size: 25px;
+  }
+  .model .form-control {
+    margin-bottom: 5px;
+  }
+  .model .form-control input[type="text"],
+  input[type="email"],
+  input[type="password"] {
+    padding: 5px;
+    margin-top: 3px;
+    border: 0.5px solid #fff;
+    font-size: 15px;
+    border-radius: 5px;
+  }
+}

@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- font awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+        integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- DATA TABLE MANAGER -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+
+    <title>Overload</title>
+    <link rel="stylesheet" href="profile-style.css">
+
+</head>
+
+<body>
+    <div class="nav">
+        <div class="nav-link"><span>Edit Profile</span></div>
+        <div class="nav-link"><a href="index.html"><i class="fas fa-bars"></i></a></div>
+    </div>
+    <div class="profile-container">
+        <div class="personal-info">
+            <div class="personal-img" id="personal-img"></div>
+            <div class="personal-label">
+                <p id="fullname"></p>
+                <p id="email"></p>
+                <button id="profile-edit">Edit</button>
+            </div>
+        </div>
+        <div class="table-info">
+            <table class="table" id="table">
+                <thead>
+                    <tr>
+                        <td>Exercise Name</td>
+                        <td>Body part</td>
+                        <td>Action</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- TO BE FILLED USING JAVASCRIPT -->
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+    <div class="profile-model" id="profile-model">
+        <div class="profile-header">
+            <span id="close"><i class="fas fa-times"></i></span>
+            <h2>Edit profile</h2>
+        </div>
+        <form action="#" id="profile-form">
+            <div class="form-control">
+                <label for="firstname">First Name</label>
+                <input type="text" name="firstName" id="firstname" required>
+            </div>
+            <div class="form-control">
+                <label for="lastname">Last Name</label>
+                <input type="text" name="lastName" id="lastname" required>
+            </div>
+            <div class="form-control">
+                <label for="username">Username</label>
+                <input type="text" name="username" id="username" required>
+            </div>
+            <div class="form-control">
+                <label for="email">Email</label>
+                <input type="email" name="email" id="email-edit" required>
+            </div>
+            <div class="form-control">
+                <label for="password">Password</label>
+                <input type="password" name="password" id="password" required>
+            </div>
+            <div class="form-btn">
+                <button type="submit">Save</button>
+            </div>
+        </form>
+
+    </div>
+    <div class="exercise-model" id="exercise-model">
+        <div class="model">
+            <div class="profile-header">
+                <span id="exercise-close"><i class="fas fa-times"></i></span>
+                <h2>Edit profile</h2>
+            </div>
+            <form action="" class="exercise-form" id="exercise-form">
+                <div class="form-control">
+                    <label for="exerciseName">Exercise Name</label>
+                    <input type="text" id="exercise-name" name="exerciseName" required>
+                </div>
+                <div class="form-control">
+                    <label for="part">Body Part</label>
+                    <select name="part" id="body-part" required>
+                        <option value="" disabled selected>Select body part</option>
+                        <option value="CHEST">Chest</option>
+                        <option value="BACK">Back</option>
+                        <option value="SHOULDER">Shoulder</option>
+                        <option value="ARMS">Arm</option>
+                        <option value="LEGS">Leg</option>
+                    </select>
+                </div>
+                <div class="form-btn">
+                    <button type="submit">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</body>
+<script>
+    const myStorage = window.localStorage;
+    const data = JSON.parse(myStorage.getItem("data"));
+    const jwtToken = myStorage.getItem("token")
+    const userId = data.id;
+    console.log(data);
+    console.log(userId);
+    console.log(jwtToken);
+    //POPULATE IMAGE PROFILE
+
+    document.getElementById("personal-img").style.background = `url('https://robohash.org/${data.firstName}') no-repeat center center/cover`;
+    document.getElementById("fullname").innerText = data.firstName + " " + data.lastName
+    document.getElementById("email").innerText = data.email
+
+
+    const tableBody = document.querySelector("#table > tbody");
+    const table = document.getElementById("table")
+    const options = data.exercises
+
+    console.log(options);
+
+    options.forEach(element => {
+        delete element.rep
+        delete element.weight
+        delete element.dates
+        delete element.userId
+        delete element.gains
+        delete element.createdAt
+
+        // console.log(element);
+        let row = document.createElement('tr');
+        let editButton = document.createElement("button")
+        let deleteButton = document.createElement("button")
+
+        editButton.innerText = "edit"
+        deleteButton.innerText = "delete"
+
+        editButton.setAttribute("class", "exercise-edit")
+        deleteButton.setAttribute("class", "exercise-delete")
+        row.setAttribute("id", element.id)
+
+        delete element.id
+
+        let buttonCell = document.createElement("td");
+
+        Object.values(element).forEach(text => {
+            let cell = document.createElement("td");
+            let textNode = document.createTextNode(text);
+
+            cell.setAttribute("class", "row-data")
+
+            cell.appendChild(textNode)
+            buttonCell.appendChild(editButton)
+            buttonCell.appendChild(deleteButton)
+            row.appendChild(cell)
+            row.appendChild(buttonCell)
+            // row.appendChild(editButton)
+            // row.appendChild(deleteButton)
+        })
+        tableBody.appendChild(row)
+    });
+
+    ///TABLE A MANAGER
+    function manageDatatable() {
+        if (options.length >= 10) {
+            $('#table').DataTable();
+        }
+    }
+
+    manageDatatable();
+
+
+
+    // SHOW MODEL
+
+    const profileEdit = document.getElementById("profile-edit")
+    const profileClose = document.getElementById("close")
+    const profileModel = document.getElementById("profile-model")
+
+    profileEdit.addEventListener("click", () => {
+        profileModel.classList.add("show")
+    })
+    profileClose.addEventListener("click", () => {
+        profileModel.classList.remove("show")
+    })
+
+
+    // POPULATING FORM DATA
+    document.getElementById("firstname").setAttribute("value", data.firstName)
+    document.getElementById("lastname").setAttribute("value", data.lastName)
+    document.getElementById("username").setAttribute("value", data.username)
+    document.getElementById("email-edit").setAttribute("value", data.email)
+
+
+    // SUBMIT USER EDITED FORM
+    const profileForm = document.getElementById("profile-form")
+
+
+    profileForm.addEventListener("submit", (e) => {
+        const formData = new FormData(profileForm);
+        const formDataSerialised = Object.fromEntries(formData);
+        console.log(formDataSerialised);
+
+        e.preventDefault()
+        fetch(`https://overload-test.herokuapp.com/api/${userId}/update`, {
+            method: "PUT",
+            headers: {
+                Authorization: jwtToken,
+                "Content-Type": "application/json",
+                Accept: "*/*",
+            },
+            body: JSON.stringify(formDataSerialised),
+        })
+            .then((response) => {
+                if (response.ok) {
+                    return response.json();
+                } else if (response.status >= 400 && response.status < 600) {
+                    alert("something went wrong")
+                }
+            })
+            .then((data) => {
+                myStorage.setItem("data", JSON.stringify(data));
+                location.reload()
+                console.log(data);
+
+            }).catch((error) => {
+                console.log(error);
+            })
+    })
+
+    // SHOW EXERCISE EDIT MODEL
+
+    let exerciseId
+
+
+    const editExerciseBtn = document.querySelectorAll(".exercise-edit")
+    editExerciseBtn.forEach((element) => {
+        element.addEventListener("click", () => {
+            let rowId = event.target.parentNode.parentNode.id;
+            exerciseId = rowId
+            let tableData = document.getElementById(rowId).querySelectorAll(".row-data");
+            exerciseName = tableData[0].innerHTML
+            let bodyPart = tableData[1].innerHTML
+            console.log(exerciseName);
+            console.log(bodyPart);
+            showExerciseModel(rowId, exerciseName, bodyPart)
+            // deleteExercise(rowId)
+
+        })
+    })
+
+
+
+    // SHOW EXERCISE EDIT MODEL
+    function showExerciseModel(id, exerciseName, bodyPart) {
+        const exerciseModelOpen = document.querySelector(`#${CSS.escape(id)} > td > button`)
+        const exerciseModel = document.getElementById("exercise-model")
+        const exerciseModelClose = document.getElementById("exercise-close")
+
+        console.log(id);
+
+        exerciseModelOpen.addEventListener("click", () => {
+            exerciseModel.classList.add("show")
+            document.getElementById("exercise-name").value = exerciseName;
+            document.getElementById("body-part").value = bodyPart;
+
+        })
+
+        exerciseModelClose.addEventListener("click", () => {
+            exerciseModel.classList.remove("show")
+        })
+
+
+    }
+
+    // SUBMIT EDDITED EXERCISE TO THE SERVER
+    const exerciseForm = document.getElementById("exercise-form");
+    exerciseForm.addEventListener("submit", (e) => {
+        e.preventDefault()
+        // const currentExerciseName = document.getElementById("exercise-name").value
+        const exerciseFormData = new FormData(exerciseForm)
+        const exerciseFormDataSerialised = Object.fromEntries(exerciseFormData);
+        console.log(exerciseId);
+
+        fetch(`https://overload-test.herokuapp.com/${exerciseId}/exercise/update`, {
+            method: "PUT",
+            headers: {
+                Authorization: jwtToken,
+                "Content-Type": "application/json",
+                Accept: "*/*",
+            },
+            body: JSON.stringify(exerciseFormDataSerialised),
+        })
+            .then((response) => {
+                if (response.ok) {
+                    return response.json();
+                } else if (response.status >= 400 && response.status < 600) {
+                    alert("something went wrong")
+                }
+            })
+            .then((data) => {
+                console.log(data);
+                window.location.href = "index.html"
+
+            }).catch((error) => {
+                console.log(error);
+            })
+    })
+
+    // DELETE EXERCISE
+
+    const exerciseDeleteBtn = document.querySelectorAll(".exercise-delete")
+    exerciseDeleteBtn.forEach((element) => {
+        element.addEventListener("click", () => {
+            let rowId = event.target.parentNode.parentNode.id;
+            deleteExercise(rowId)
+        });
+    })
+
+    function deleteExercise(id) {
+        if (confirm("Are you sure you want to delete this exercise ")) {
+            fetch(`https://overload-test.herokuapp.com/api/${id}/exercise/delete`, {
+                method: "DELETE",
+                headers: {
+                    Authorization: jwtToken,
+                    "Content-Type": "application/json",
+                    Accept: "*/*",
+                },
+            })
+                .then((response) => {
+                    if (response.ok) {
+                        return response.json();
+                    } else if (response.status >= 400 && response.status < 600) {
+                        alert("something went wrong")
+                    }
+                })
+                .then((data) => {
+                    console.log(data);
+                    window.location.href = "index.html"
+
+                }).catch((error) => {
+                    console.log(error);
+                })
+        }
+    }
+
+
+
+
+</script>
+
+</html>
