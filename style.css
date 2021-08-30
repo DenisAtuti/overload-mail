@@ -45,7 +45,6 @@ body {
   width: 6rem;
   border: 0.2rem solid;
   border-radius: 50%;
-  background: url("./images/fitness-profile.jpg") no-repeat center center/cover;
 }
 .nav .nav-link.dropdown {
   display: flex;
